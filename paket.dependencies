@@ -1,0 +1,25 @@
+source https://api.nuget.org/v3/index.json
+framework: netcoreapp3.1
+storage: none
+
+nuget FSharp.Core                           >= 4.6.2 lowest_matching: true
+                                            
+nuget FSharp.Data.Adaptive                  ~> 1.0.0
+nuget Aardvark.Base                         ~> 5.0.13
+nuget Aardvark.Base.Incremental             ~> 5.0.13
+nuget Aardvark.Base.FSharp                  ~> 5.0.13
+                                            
+nuget Aardvark.Base.Rendering               ~> 5.0.7
+nuget Aardvark.SceneGraph                   ~> 5.0.7
+nuget Aardvark.SceneGraph.IO                ~> 5.0.7
+nuget Aardvark.Application.Slim             ~> 5.0.7
+nuget Aardvark.Application.Slim.GL          ~> 5.0.7
+nuget Aardvark.Application.Slim.Vulkan      ~> 5.0.7
+                                            
+
+
+group Build
+source https://api.nuget.org/v3/index.json
+framework: netstandard2.0
+github aardvark-platform/aardvark.fake:v51
+nuget Fake.DotNet.Cli

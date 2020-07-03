@@ -12,3 +12,9 @@ This example illustrates very basic usage of Aardvark's `Sg` and renders a simpl
 Implements basic FShade shaders, illustrates composition and `Sg` integration.
 
 ![Shaders](./screenshots/02_shaders.png)
+
+## 03 - Adaptive
+
+Shows basic use of adaptive values in the `Sg` and very simple animations
+
+![Adaptive](./screenshots/03_adaptive.png)

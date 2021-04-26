@@ -16,6 +16,6 @@ Implements basic FShade shaders, illustrates composition and `Sg` integration.
 
 ## 03 - Adaptive
 
-Shows basic use of adaptive values in the `Sg` and very simple animations
+uses adaptive values in the `Sg` for dynamic transformations.
 
 [![Adaptive](./screenshots/03_adaptive.gif)](./src/03%20-%20Adaptive/Program.fs)

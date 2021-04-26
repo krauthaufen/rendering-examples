@@ -6,6 +6,14 @@ open Aardvark.SceneGraph
 open Aardvark.Application
 open Aardvark.Rendering.Text
 
+let textConfig =
+    {
+        font = FontSquirrel.Hack.Regular
+        color = C4b.White
+        align = TextAlignment.Center
+        flipViewDependent = true
+        renderStyle = RenderStyle.NoBoundary
+    }
 
 [<EntryPoint>]
 let main _argv = 
@@ -62,6 +70,7 @@ let main _argv =
                 V3d.Zero
         )
 
+
     let sg =  
         Sg.ofList [
             let rand = RandomSystem()
@@ -73,6 +82,7 @@ let main _argv =
                     let color = 
                         rand.UniformC3f().ToC4b()
 
+                    // orient the coordinate frame s.t. x points to `targetPoint`
                     let orientation = 
                         targetPoint |> AVal.map (fun p ->
                             let x = p - V3d(float x, float y, 0.0) |> Vec.normalize
@@ -81,25 +91,30 @@ let main _argv =
                             Trafo3d.FromBasis(x, y, z, V3d.Zero)
                         )
 
+                    // rotate around the x-axis
                     let rotation = 
                         timeInSeconds |> AVal.map (fun t -> Trafo3d.RotationX(speed * t))
 
-                    Sg.cone' 16 color 0.2 0.6 //(Box3d.FromCenterAndSize(V3d.Zero, V3d(0.4, 0.4, 0.4)))
+                    // create cone with r=0.2 and h=0.6 (up=z, z=0 -> bottom)
+                    Sg.cone' 16 color 0.2 0.6 
+
+                    // shift the code s.t. z=0 is in its "center"
                     |> Sg.translate 0.0 0.0 -0.3
+
+                    // rotate it s.t. x is the up-direction
                     |> Sg.transform (Trafo3d.RotationY Constant.PiHalf)
+
+                    // rotate it around its x-axis
                     |> Sg.trafo rotation
+
+                    // orient it s.t. it faces the targetPoint
                     |> Sg.trafo orientation
+
+                    // move it to its grid position
                     |> Sg.translate (float x) (float y) 0.0
 
 
-            let textConfig =
-                {
-                    font = FontSquirrel.Hack.Regular
-                    color = C4b.White
-                    align = TextAlignment.Center
-                    flipViewDependent = true
-                    renderStyle = RenderStyle.NoBoundary
-                }
+            // show a text overlay that dynamically rotates
             Sg.textWithConfig textConfig (AVal.constant "Move the Mouse\nto change the rotation axis")
             |> Sg.scale 0.5
             |> Sg.transform (Trafo3d.RotationX Constant.PiHalf)

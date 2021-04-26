@@ -18,4 +18,4 @@ Implements basic FShade shaders, illustrates composition and `Sg` integration.
 
 Shows basic use of adaptive values in the `Sg` and very simple animations
 
-[![Adaptive](./screenshots/03_adaptive.png)](./src/03%20-%20Adaptive/Program.fs)
+[![Adaptive](./screenshots/03_adaptive.gif)](./src/03%20-%20Adaptive/Program.fs)

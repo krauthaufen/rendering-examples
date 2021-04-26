@@ -115,7 +115,7 @@ let main _argv =
 
 
             // show a text overlay that dynamically rotates
-            Sg.textWithConfig textConfig (AVal.constant "Move the Mouse\nto change the rotation axis")
+            Sg.textWithConfig textConfig (AVal.constant "Move the Mouse\nto change the target")
             |> Sg.scale 0.5
             |> Sg.transform (Trafo3d.RotationX Constant.PiHalf)
             |> Sg.translate 0.0 0.0 2.0
